@@ -15,7 +15,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
+<!--<TableRow>-->
+<!--    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--        android:id="@+id/profile_image"-->
+<!--        android:layout_width="60dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:src="@drawable/ic_one"-->
+<!--        app:civ_border_width="5dp"-->
+<!--        app:civ_border_color="#4CAF50"/>-->
+<!--</TableRow>-->
 
     </TableLayout>
 
@@ -26,14 +35,14 @@
         android:layout_marginTop="44dp"
         android:indeterminateOnly="false"
         android:progressDrawable="@drawable/timer"
-        tools:progress="60"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        tools:progress="60" />
 
     <TextView
-        android:id="@+id/timer_progress"
+        android:id="@+id/timerProgressLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/timer"
@@ -41,5 +50,28 @@
         app:layout_constraintStart_toStartOf="@+id/timer"
         app:layout_constraintTop_toTopOf="@+id/timer"
         tools:text="60" />
+
+    <TextView
+        android:id="@+id/endLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timer"
+        app:layout_constraintVertical_bias="0.171" />
+
+    <Button
+        android:id="@+id/nextOrRepeat"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/ic_right_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/timer"
+        app:layout_constraintEnd_toEndOf="@+id/timer"
+        app:layout_constraintStart_toStartOf="@+id/timer"
+        app:layout_constraintTop_toTopOf="@+id/timer"
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
