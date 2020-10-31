@@ -18,7 +18,7 @@ class MotoricTextWatcher(private val game: AbstractGame, private val text: Strin
     val symbolsToSpeed: MutableList<Pair<Pair<Int, Int>, Long>> = mutableListOf()
 
     fun isSomethingInputted(): Boolean {
-        return this::startTime.isInitialized
+        return this::startTime.isInitialized && prevText.isNotEmpty() && symbolsToSpeed.isNotEmpty()
     }
 
     override fun afterTextChanged(s: Editable?) {
