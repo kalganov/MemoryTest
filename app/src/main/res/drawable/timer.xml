@@ -17,9 +17,9 @@
                 android:thicknessRatio="16"
                 android:useLevel="true">
                 <gradient
-                    android:endColor="@color/colorPrimary"
-                    android:startColor="@color/colorAccent"
-                    android:type="sweep" />
+                    android:endColor="@color/timer"
+                    android:startColor="@color/wrongAnswer"
+                    android:type="linear" />
             </shape>
         </rotate>
     </item>

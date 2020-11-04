@@ -5,4 +5,5 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="rightAnswer">#4CAF50</color>
     <color name="wrongAnswer">#E12213</color>
+    <color name="timer">#E5C0C0</color>
 </resources>
