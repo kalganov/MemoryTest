@@ -5,53 +5,76 @@
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/numberGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="startNumberGame"
-        android:text="Запоминание цифр"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.874" />
-
-    <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button"
         android:text="Запоминание ячеек"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/numberGame"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:onClick="startNumberGame"
+        android:text="Запоминание цифр"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.933" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="104dp"
+        android:background="@drawable/button"
+        android:onClick="startTextGame"
+        android:text="Запоминание текста"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button"
         android:text="Запоминание карточек"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/button5"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="252dp"
-        android:onClick="startTextGame"
-        android:text="Запоминание текста"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="51dp"
+        android:fontFamily="@font/leckerli_one"
+        android:text="Memory Test"
+        android:textAlignment="center"
+        android:textColor="#813939"
+        android:textSize="73sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
