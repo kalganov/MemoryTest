@@ -53,7 +53,8 @@ class NumberGame : AbstractGame() {
     }
 
     private fun generateNumbers(numberCount: Int): List<Int> {
-        val generatedNumbers = List(numberCount) { nextInt(0, 9) }
+        //val generatedNumbers = List(numberCount) { nextInt(0, 9) }
+        val generatedNumbers = (0..9).shuffled().take(numberCount)
         setUpLayout(generatedNumbers)
         return generatedNumbers
     }
@@ -128,6 +129,7 @@ class NumberGame : AbstractGame() {
     private fun highlightChosenCard(card: CircleImageView) {
         card.borderWidth = 10
         val imageNumber = card.contentDescription.toString().toInt()
+        win = hiddenNumber == imageNumber
         card.borderColor = if (hiddenNumber == imageNumber) {
             getColor(R.color.rightAnswer)
         } else {

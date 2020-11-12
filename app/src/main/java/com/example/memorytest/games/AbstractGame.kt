@@ -18,10 +18,11 @@ abstract class AbstractGame : AppCompatActivity() {
     private lateinit var endLabel: TextView
     private lateinit var nextOrRepeatButton: Button
 
-    private val timer = Timer()
+    private var timer = Timer()
 
     protected var speedOnInit: Int = 10
     protected var speedOnProgress: Int = 10
+    protected var win: Boolean = false
 
     protected abstract fun setUpInitState()
     protected abstract fun setUpProgressState()
@@ -31,6 +32,10 @@ abstract class AbstractGame : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        generate()
+    }
+
+    private fun generate(){
         setUpVariables()
         progressBar = findViewById(R.id.timer)
         progressBarLabel = findViewById(R.id.timerProgressLabel)
@@ -38,6 +43,8 @@ abstract class AbstractGame : AppCompatActivity() {
         nextOrRepeatButton = findViewById(R.id.nextOrRepeat)
 
         changeState(GameState.INIT)
+
+        timer = Timer()
         timer.schedule(GameTimerTask(this), 1000, 500)
     }
 
@@ -56,12 +63,28 @@ abstract class AbstractGame : AppCompatActivity() {
                 setUpEndState()
                 timer.cancel()
                 runOnUiThread {
-                    endLabel.text = "к следующей игре"
-                    progressBarLabel.visibility = View.GONE
-                    nextOrRepeatButton.visibility = View.VISIBLE
-                    nextOrRepeatButton.setOnClickListener {
-                        this.finish()
+//                    endLabel.text = "к следующей игре"
+//                    progressBarLabel.visibility = View.GONE
+//                    nextOrRepeatButton.visibility = View.VISIBLE
+//                    nextOrRepeatButton.setOnClickListener {
+//                        this.finish()
+//                    }
+                    val repeat:Button
+                    val next:Button
+                    if (win){
+                        setContentView(R.layout.success)
+
+                        repeat = findViewById<Button>(R.id.repeat)
+                        next = findViewById<Button>(R.id.next)
+                    }else{
+                        setContentView(R.layout.fail)
+
+                        repeat = findViewById<Button>(R.id.repeat)
+                        next = findViewById<Button>(R.id.next)
                     }
+
+                    repeat.setOnClickListener {generate()}
+                    next.setOnClickListener {finish()}
                 }
             }
         }
