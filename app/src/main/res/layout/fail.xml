@@ -2,63 +2,73 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content"
+    android:id="@+id/fail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/gradient">
+    android:background="@drawable/gradient"
+    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="134dp"
-        android:layout_marginTop="72dp"
-        android:fontFamily="sans-serif"
-        android:text="Оу,ошибочка!"
-        android:textAlignment="center"
-        android:textColor="#813939"
-        android:textSize="23sp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="319dp"
+        android:layout_height="199dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/kitty"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="DuplicateIds" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/jacques_francois"
         android:text="Попробуй еще раз!"
         android:textAlignment="center"
         android:textColor="#813939"
         android:textSize="23sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="213dp"
-        android:layout_height="240dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="125dp"
-        android:src="@drawable/kitty"
-        app:layout_constraintBottom_toTopOf="@+id/Repeat"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/jacques_francois"
+        android:text="Оу, ошибочка"
+        android:textAlignment="center"
+        android:textColor="#813939"
+        android:textSize="23sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="DuplicateIds" />
 
     <Button
-        android:id="@+id/Repeat"
+        android:id="@+id/next"
         android:layout_width="88dp"
         android:layout_height="78dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="92dp"
+        android:background="@drawable/right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/repeat"
+        android:layout_width="88dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="92dp"
         android:background="@drawable/repeat"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
+        app:layout_constraintEnd_toStartOf="@+id/next"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
