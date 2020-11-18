@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.memorytest.games.CardGame
 import com.example.memorytest.games.NumberGame
+import com.example.memorytest.games.RepeatGame
 import com.example.memorytest.games.TextGame
 
 
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
 
     fun startNumberGame(view: View) {
         val game = Intent(this, NumberGame::class.java)
+        startActivity(game)
+    }
+    fun startRepeatGame(view: View) {
+        val game = Intent(this, RepeatGame::class.java)
         startActivity(game)
     }
 

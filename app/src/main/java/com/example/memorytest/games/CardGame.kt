@@ -18,7 +18,7 @@ import kotlin.random.Random.Default.nextInt
 
 //TODO make it as a parameter
 private const val CARDS_IN_ROW = 4
-private const val CARDS_IN_ALL = 2 // онли четные числа
+private const val CARDS_IN_ALL = 8 // онли четные числа
 private const val MAX_NUMBER = 9
 
 class CardGame : AppCompatActivity() {

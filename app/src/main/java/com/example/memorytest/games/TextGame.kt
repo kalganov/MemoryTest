@@ -58,7 +58,6 @@ class TextGame : AbstractGame() {
 
     override fun setUpProgressState() {
         runOnUiThread {
-            //TODO UNCOMMENT IT FURTHER
 //            text.visibility = View.GONE
             inputText.visibility = View.VISIBLE
         }
