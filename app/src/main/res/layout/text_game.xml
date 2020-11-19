@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient">
-
 
     <ProgressBar
         android:id="@+id/timer"
@@ -66,10 +66,25 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
+            android:id="@+id/rememberAndRepeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif"
+            android:text="Прочитайте текст, а затем запишите его"
+            android:textColor="#813939"
+            android:textSize="23sp" />
+
+        <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif"
+            android:textSize="23sp"
             android:paddingVertical="10dp" />
 
         <EditText
@@ -77,9 +92,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif"
+            android:hint="@string/textHint"
             android:inputType="textPersonName"
             android:paddingVertical="10dp"
-            android:hint="@string/textHint"
             android:visibility="gone" />
 
     </LinearLayout>

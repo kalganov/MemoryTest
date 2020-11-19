@@ -22,6 +22,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         android:textColor="#813939"
         android:textSize="23sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

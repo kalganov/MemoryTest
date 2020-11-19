@@ -22,7 +22,7 @@ abstract class AbstractGame : AppCompatActivity() {
 
     protected var speedOnInit: Int = 10
     protected var speedOnProgress: Int = 10
-    protected var win: Boolean = false
+    var win: Boolean = false
 
     protected abstract fun setUpInitState()
     protected abstract fun setUpProgressState()

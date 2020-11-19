@@ -45,6 +45,7 @@ class MotoricTextWatcher(private val game: AbstractGame, private val text: Strin
         startTime = Instant.now()
 
         if (text == inputtedText) {
+            game.win = true
             game.changeState(GameState.END)
         }
     }

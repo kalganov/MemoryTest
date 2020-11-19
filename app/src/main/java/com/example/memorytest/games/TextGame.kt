@@ -12,6 +12,7 @@ import com.example.memorytest.R
 import com.example.memorytest.controller.DesktopServerController
 import com.example.memorytest.dto.UserInput
 import com.example.memorytest.text.MotoricTextWatcher
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random.Default.nextInt
 
 class TextGame : AbstractGame() {
@@ -20,6 +21,8 @@ class TextGame : AbstractGame() {
     private lateinit var inputText: EditText
     private lateinit var controller: DesktopServerController
     private lateinit var motoricTextWatcher: MotoricTextWatcher
+    private lateinit var text_1: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +45,7 @@ class TextGame : AbstractGame() {
 
     //TODO generate normal text
     private fun generateText(): CharSequence? {
-        return when (nextInt(0, 8)) {
+        return when (9){//nextInt(0, 8)) {
             0 -> "the type integer is the common choice"
             1 -> "because it relies on compiler support for eight-byte integers"
             2 -> "on such machines"
@@ -63,7 +66,6 @@ class TextGame : AbstractGame() {
         }
     }
 
-    @SuppressLint("HardwareIds")
     override fun setUpEndState() {
         runOnUiThread {
             if (motoricTextWatcher.isSomethingInputted()) {
@@ -75,6 +77,8 @@ class TextGame : AbstractGame() {
                     motoricTextWatcher.symbolsToSpeed.toList()
                 ))
             }
+            textView.setText(R.string.repeat)
+
             text.visibility = View.GONE
             inputText.visibility = View.VISIBLE
             inputText.isEnabled = false
