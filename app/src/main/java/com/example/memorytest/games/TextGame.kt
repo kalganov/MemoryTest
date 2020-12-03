@@ -1,7 +1,5 @@
 package com.example.memorytest.games
 
-import android.annotation.SuppressLint
-import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.view.WindowManager
@@ -12,7 +10,6 @@ import com.example.memorytest.R
 import com.example.memorytest.controller.DesktopServerController
 import com.example.memorytest.dto.UserInput
 import com.example.memorytest.text.MotoricTextWatcher
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random.Default.nextInt
 
 class TextGame : AbstractGame() {
@@ -21,31 +18,27 @@ class TextGame : AbstractGame() {
     private lateinit var inputText: EditText
     private lateinit var controller: DesktopServerController
     private lateinit var motoricTextWatcher: MotoricTextWatcher
-    private lateinit var text_1: TextView
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        speedOnProgress = 1
-        controller = DesktopServerController(Volley.newRequestQueue(this))
-        motoricTextWatcher = MotoricTextWatcher(this, text.text.toString())
-        inputText.addTextChangedListener(motoricTextWatcher)
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-    }
 
     override fun setUpVariables() {
         setContentView(R.layout.text_game)
         text = findViewById(R.id.text)
         inputText = findViewById(R.id.inputText)
+        speedOnProgress = 1
+        controller = DesktopServerController(Volley.newRequestQueue(this))
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
     }
 
     override fun setUpInitState() {
-        runOnUiThread { text.text = generateText() }
+        runOnUiThread {
+            text.text = generateText()
+            motoricTextWatcher = MotoricTextWatcher(this, text.text.toString())
+            inputText.addTextChangedListener(motoricTextWatcher)
+        }
     }
 
     //TODO generate normal text
     private fun generateText(): CharSequence? {
-        return when (9){//nextInt(0, 8)) {
+        return when (nextInt(0, 8)){
             0 -> "the type integer is the common choice"
             1 -> "because it relies on compiler support for eight-byte integers"
             2 -> "on such machines"
@@ -61,7 +54,7 @@ class TextGame : AbstractGame() {
 
     override fun setUpProgressState() {
         runOnUiThread {
-//            text.visibility = View.GONE
+            text.visibility = View.GONE
             inputText.visibility = View.VISIBLE
         }
     }
@@ -77,11 +70,7 @@ class TextGame : AbstractGame() {
                     motoricTextWatcher.symbolsToSpeed.toList()
                 ))
             }
-            textView.setText(R.string.repeat)
-
-            text.visibility = View.GONE
-            inputText.visibility = View.VISIBLE
-            inputText.isEnabled = false
+            win = inputText.text.toString() == text.text.toString()
         }
     }
 }

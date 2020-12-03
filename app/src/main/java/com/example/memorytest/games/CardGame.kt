@@ -10,10 +10,8 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
-import com.example.memorytest.MainActivity
 import com.example.memorytest.R
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlin.random.Random.Default.nextInt
 
 
 //TODO make it as a parameter
@@ -24,19 +22,17 @@ private const val MAX_NUMBER = 9
 class CardGame : AppCompatActivity() {
 
     private lateinit var layout: TableLayout
-
-    private lateinit var generatedNumbers: List<Int>
-
     private var timer: CountDownTimer? = null
     private var clickedNumber: CircleImageView? = null
-    private var score: Int = 0;
+    private var score: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         generate()
     }
 
-    private fun generate(){
+    private fun generate() {
         setContentView(R.layout.cards_game)
         layout = findViewById(R.id.tableLayout)
 
@@ -45,7 +41,7 @@ class CardGame : AppCompatActivity() {
     }
 
     private fun generateNumbers(): List<Int> {
-        var generatedNumbers =  (0..MAX_NUMBER).shuffled().take(CARDS_IN_ALL / 2)
+        var generatedNumbers = (0..MAX_NUMBER).shuffled().take(CARDS_IN_ALL / 2)
         generatedNumbers = (generatedNumbers + generatedNumbers).shuffled()
         setUpLayout(generatedNumbers)
         return generatedNumbers
@@ -92,7 +88,7 @@ class CardGame : AppCompatActivity() {
         }
     }
 
-    private fun addListeners(img: View){
+    private fun addListeners(img: View) {
         img.setOnTouchListener { v, event ->
             if (v is CircleImageView) {
                 when (event.action) {
@@ -109,7 +105,7 @@ class CardGame : AppCompatActivity() {
     }
 
     private fun chooseCard(card1: CircleImageView) {
-        var card2: CircleImageView? = clickedNumber
+        val card2: CircleImageView? = clickedNumber
 
         timer?.cancel()
         timer?.onFinish()
@@ -123,7 +119,7 @@ class CardGame : AppCompatActivity() {
         val prevClick = card2?.contentDescription?.toString()?.toInt() ?: -1
 
         if (prevClick == -1) clickedNumber = card1
-        else{
+        else {
             if (prevClick == imageNumber) chooseRight(card1, card2!!)
             else chooseFalse(card1, card2!!)
 
@@ -134,8 +130,8 @@ class CardGame : AppCompatActivity() {
         }
     }
 
-    private fun chooseFalse(card1: CircleImageView, card2: CircleImageView){
-        timer = object: CountDownTimer(1000, 1000) {
+    private fun chooseFalse(card1: CircleImageView, card2: CircleImageView) {
+        timer = object : CountDownTimer(1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {}
 
             override fun onFinish() {
@@ -149,22 +145,22 @@ class CardGame : AppCompatActivity() {
         timer?.start()
     }
 
-    private fun chooseRight(card1: CircleImageView, card2: CircleImageView){
+    private fun chooseRight(card1: CircleImageView, card2: CircleImageView) {
         card1.setOnTouchListener(null)
         card2?.setOnTouchListener(null)
-        score+=2;
+        score += 2;
 
-        if (score >= CARDS_IN_ALL){
+        if (score >= CARDS_IN_ALL) {
             setContentView(R.layout.success)
 
-            var repeat = findViewById<Button>(R.id.repeat)
-            repeat.setOnClickListener {generate()}
+            val repeat = findViewById<Button>(R.id.repeat)
+            repeat.setOnClickListener { generate() }
 
-            var next = findViewById<Button>(R.id.next)
-            next.setOnClickListener {finish()}
+            val next = findViewById<Button>(R.id.next)
+            next.setOnClickListener { finish() }
         }
     }
-//картинки храняться тут
+
     private fun getNumberImageResource(number: Int): Int {
         return when (number) {
             0 -> R.drawable.ic_zero

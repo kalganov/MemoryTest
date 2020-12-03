@@ -1,7 +1,6 @@
 package com.example.memorytest.games
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -22,7 +21,7 @@ abstract class AbstractGame : AppCompatActivity() {
 
     protected var speedOnInit: Int = 10
     protected var speedOnProgress: Int = 10
-    var win: Boolean = false
+    protected var win: Boolean = false
 
     protected abstract fun setUpInitState()
     protected abstract fun setUpProgressState()
@@ -35,7 +34,7 @@ abstract class AbstractGame : AppCompatActivity() {
         generate()
     }
 
-    private fun generate(){
+    private fun generate() {
         setUpVariables()
         progressBar = findViewById(R.id.timer)
         progressBarLabel = findViewById(R.id.timerProgressLabel)
@@ -63,20 +62,14 @@ abstract class AbstractGame : AppCompatActivity() {
                 setUpEndState()
                 timer.cancel()
                 runOnUiThread {
-//                    endLabel.text = "к следующей игре"
-//                    progressBarLabel.visibility = View.GONE
-//                    nextOrRepeatButton.visibility = View.VISIBLE
-//                    nextOrRepeatButton.setOnClickListener {
-//                        this.finish()
-//                    }
-                    val repeat:Button
-                    val next:Button
-                    if (win){
+                    val repeat: Button
+                    val next: Button
+                    if (win) {
                         setContentView(R.layout.success)
 
                         repeat = findViewById<Button>(R.id.repeat)
                         next = findViewById<Button>(R.id.next)
-                    }else{
+                    } else {
                         setContentView(R.layout.fail)
 
                         repeat = findViewById<Button>(R.id.repeat)

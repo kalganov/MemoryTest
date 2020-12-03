@@ -15,18 +15,10 @@ import com.example.memorytest.R
 import de.hdodenhof.circleimageview.CircleImageView
 
 
-//TODO make it as a parameter
-private const val CARDS_IN_ROW = 3
-private const val CARDS_IN_ALL = 9 // онли четные числа
-
 private const val MIN_CARDS_LEN = 3
 private const val MAX_CARDS_LEN = 5
 
 private const val STEP_MILLIS = 1000L
-
-private const val STEP_ERROR_MILLIS = 500L
-private const val STEP_ERROR = 6
-
 
 class RepeatGame : AppCompatActivity() {
 
@@ -35,11 +27,12 @@ class RepeatGame : AppCompatActivity() {
 
     private lateinit var repeatedCards: List<CircleImageView>
     private val cards: MutableList<CircleImageView> = ArrayList()
-    private lateinit var text: TextView
     private var timer: CountDownTimer? = null
-    private var clickedNumber: CircleImageView? = null
     private var score: Int = 0
     private var step: Int = 0
+
+    private var cardsInRow: Int = 0
+    private var cardsInAll: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,8 +48,27 @@ class RepeatGame : AppCompatActivity() {
         step = 0
         cards.clear()
 
+        setUpDifficulty()
+
         generateNumbers()
         showCards()
+    }
+
+    private fun setUpDifficulty() {
+        when ((this.application as GameApp).difficulty) {
+            Difficulty.EASY -> {
+                cardsInRow = 3
+                cardsInAll = 9
+            }
+            Difficulty.MEDIUM -> {
+                cardsInRow = 4
+                cardsInAll = 16
+            }
+            Difficulty.HARD -> {
+                cardsInRow = 5
+                cardsInAll = 25
+            }
+        }
     }
 
     private fun generateNumbers() {
@@ -66,7 +78,7 @@ class RepeatGame : AppCompatActivity() {
 
     private fun setUpLayout() {
         layout.removeAllViews()
-        (1..CARDS_IN_ALL).chunked(CARDS_IN_ROW).forEach {
+        (1..cardsInAll).chunked(cardsInRow).forEach {
             val tableRow = TableRow(this)
             it.forEach {
                 val number = CircleImageView(this).apply {
@@ -81,7 +93,7 @@ class RepeatGame : AppCompatActivity() {
                     TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.MATCH_PARENT
                 ).apply {
-                    setMargins(20, 20, 20, 20)
+                    setMargins(15, 15, 15, 15)
                 }
             }
 
@@ -125,9 +137,9 @@ class RepeatGame : AppCompatActivity() {
     private fun showCards() {
         textView.setText(R.string.remember)
 
-        object : CountDownTimer(STEP_MILLIS, STEP_MILLIS){
+        object : CountDownTimer(STEP_MILLIS, STEP_MILLIS) {
             override fun onTick(millisUntilFinished: Long) {}
-            
+
             override fun onFinish() {
                 resetShow()
                 startTimer()
@@ -136,7 +148,7 @@ class RepeatGame : AppCompatActivity() {
         }.start()
     }
 
-    private fun startTimer(){
+    private fun startTimer() {
         timer = object : CountDownTimer(score * STEP_MILLIS, STEP_MILLIS) {
             override fun onTick(millisUntilFinished: Long) {
                 showStep(repeatedCards[(((score * STEP_MILLIS) - millisUntilFinished) / STEP_MILLIS).toInt()])
@@ -174,20 +186,20 @@ class RepeatGame : AppCompatActivity() {
     private fun showError() {
         setContentView(R.layout.fail)
 
-        var repeat = findViewById<Button>(R.id.repeat)
+        val repeat = findViewById<Button>(R.id.repeat)
         repeat.setOnClickListener { generate() }
 
-        var next = findViewById<Button>(R.id.next)
+        val next = findViewById<Button>(R.id.next)
         next.setOnClickListener { finish() }
     }
 
     private fun showWin() {
         setContentView(R.layout.success)
 
-        var repeat = findViewById<Button>(R.id.repeat)
+        val repeat = findViewById<Button>(R.id.repeat)
         repeat.setOnClickListener { generate() }
 
-        var next = findViewById<Button>(R.id.next)
+        val next = findViewById<Button>(R.id.next)
         next.setOnClickListener { finish() }
     }
 
@@ -202,45 +214,12 @@ class RepeatGame : AppCompatActivity() {
     }
 
     private fun chooseCard(clicked: CircleImageView) {
-        var card: CircleImageView? = repeatedCards.find { c -> clicked == c }
+        val card: CircleImageView? = repeatedCards.find { c -> clicked == c }
 
         if (card == null) showError()
         else {
             if (card == repeatedCards[step]) nextStep(card)
             else showError()
-        }
-    }
-
-    private fun chooseRight(card1: CircleImageView, card2: CircleImageView) {
-        card1.setOnTouchListener(null)
-        card2.setOnTouchListener(null)
-        score += 2
-
-        if (score >= CARDS_IN_ALL) {
-            setContentView(R.layout.success)
-
-            var repeat = findViewById<Button>(R.id.repeat)
-            repeat.setOnClickListener { generate() }
-
-            var next = findViewById<Button>(R.id.next)
-            next.setOnClickListener { finish() }
-        }
-    }
-
-    //картинки храняться тут
-    private fun getNumberImageResource(number: Int): Int {
-        return when (number) {
-            0 -> R.drawable.ic_zero
-            1 -> R.drawable.ic_one
-            2 -> R.drawable.ic_two
-            3 -> R.drawable.ic_three
-            4 -> R.drawable.ic_four
-            5 -> R.drawable.ic_five
-            6 -> R.drawable.ic_six
-            7 -> R.drawable.ic_seven
-            8 -> R.drawable.ic_eight
-            9 -> R.drawable.ic_nine
-            else -> throw IllegalArgumentException()
         }
     }
 }

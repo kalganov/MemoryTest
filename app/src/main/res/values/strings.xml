@@ -3,4 +3,6 @@
     <string name="textHint">Введите текст</string>
     <string name="remember">Запомните последовательность окрашивания ячеек</string>
     <string name="repeat">Повторите</string>
+    <string name="settings">Settings</string>
+    <string name="difficulty_label">Сложность</string>
 </resources>
