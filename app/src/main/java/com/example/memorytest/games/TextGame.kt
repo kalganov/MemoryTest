@@ -54,7 +54,7 @@ class TextGame : AbstractGame() {
 
     override fun setUpProgressState() {
         runOnUiThread {
-            text.visibility = View.GONE
+            text.visibility = View.VISIBLE
             inputText.visibility = View.VISIBLE
         }
     }
@@ -70,7 +70,9 @@ class TextGame : AbstractGame() {
                     motoricTextWatcher.symbolsToSpeed.toList()
                 ))
             }
+
             win = inputText.text.toString() == text.text.toString()
+
         }
     }
 }

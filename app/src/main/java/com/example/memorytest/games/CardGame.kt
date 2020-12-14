@@ -35,7 +35,7 @@ class CardGame : AppCompatActivity() {
     private fun generate() {
         setContentView(R.layout.cards_game)
         layout = findViewById(R.id.tableLayout)
-
+        score = 0
         generateNumbers()
         addListeners()
     }
