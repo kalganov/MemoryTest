@@ -11,7 +11,7 @@ import org.json.JSONObject
 
 class DesktopServerController(private val requestQueue: RequestQueue) {
 
-    private val serverUrl = "http://26f4791df118.ngrok.io/text"
+    private val serverUrl = "http://ec2-3-9-239-1.eu-west-2.compute.amazonaws.com:1343/text"
 
     fun postText(userInput: UserInput) {
         Log.i(this.javaClass.name, "Send user input $userInput")
